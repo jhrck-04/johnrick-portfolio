@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="ico" href="./pictures/JIL logo.jpg">
+    <title>Jesus Is Lord Church - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body style="background-image: url('./pictures/login bg.png'); background-size: cover; background-position: left center; background-repeat: no-repeat; background-attachment: fixed;">
+
+    <!-- Background overlays -->
+    <div class="bg-overlay"></div>
+    <div class="rays"></div>
+    <div class="cross-watermark"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--              LOGIN PAGE                 -->
+    <!-- ═══════════════════════════════════════ -->
+    <div id="login-page" class="page">
+
+        <!-- LEFT: Login Card -->
+        <div class="card-wrap">
+            <div class="login-card">
+
+                <!-- Logo -->
+                <div class="card-logo-area">
+                    <img src="./pictures/JIL logo.jpg" alt="Jesus Is Lord Church Logo" class="jil-logo">
+                </div>
+
+                <!-- Error message -->
+                <div id="login-error" class="hidden error-box">
+                    <i class="fas fa-exclamation-circle mr-2"></i>Invalid username or password
+                </div>
+
+                <!-- Title -->
+                <h2 class="card-heading">Welcome to Jesus is Lord<br>Management Information System!</h2>
+
+                <div class="form-divider"><span>credentials</span></div>
+
+                <!-- Form fields -->
+                <div class="form-fields">
+                    <div class="form-group">
+                        <label class="field-label">Username</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="login-username" placeholder="Enter username" class="field-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Password</label>
+                        <div class="input-wrap">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="login-password" placeholder="Enter password" class="field-input">
+                        </div>
+                    </div>
+
+                    <button onclick="handleLogin()" class="btn-sign-in">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </button>
+                </div>
+
+                <!-- Forgot password -->
+                <div class="card-footer-link">
+                    <button onclick="showForgotPassword()" class="forgot-btn">
+                        <i class="fas fa-key mr-1"></i>Forgot Password?
+                    </button>
+                </div>
+
+                <!-- Sign up -->
+                <div class="card-footer-link signup-line">
+                    Don't have an account?
+                    <a href="signup.html" class="signup-link">Sign Up</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- RIGHT: empty branding panel (widget moved to fixed position) -->
+        <div class="branding-panel"></div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--   DAILY WIDGET — Fixed Top Right Corner     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="daily-widget" id="dailyWidget">
+
+        <!-- Tab buttons (always visible) -->
+        <div class="dw-tabs">
+            <button class="dw-tab" onclick="switchTab('sermon', this)">
+                <i class="fas fa-book-open"></i> Sermon
+            </button>
+            <button class="dw-tab" onclick="switchTab('verse', this)">
+                <i class="fas fa-bible"></i> Verse
+            </button>
+            <button class="dw-tab" onclick="switchTab('quote', this)">
+                <i class="fas fa-quote-left"></i> Quote
+            </button>
+        </div>
+
+        <!-- Content area (hidden until a tab is clicked) -->
+        <div class="dw-content" id="dwContent">
+
+            <!-- Sermon Panel -->
+            <div class="dw-panel" id="panel-sermon">
+                <button class="dw-close" onclick="closeWidget()"><i class="fas fa-times"></i></button>
+                <div class="dw-badge"><i class="fas fa-microphone-alt mr-1"></i> Today's Sermon</div>
+                <div class="dw-date-badge" id="sermon-date"></div>
+                <h3 class="dw-title" id="sermon-title"></h3>
+                <p class="dw-passage" id="sermon-passage"></p>
+                <p class="dw-body" id="sermon-body"></p>
+                <div class="dw-speaker">
+                    <i class="fas fa-user-tie dw-speaker-icon"></i>
+                    <span id="sermon-speaker"></span>
+                </div>
+            </div>
+
+            <!-- Verse Panel -->
+            <div class="dw-panel" id="panel-verse">
+                <button class="dw-close" onclick="closeWidget()"><i class="fas fa-times"></i></button>
+                <div class="dw-badge"><i class="fas fa-star mr-1"></i> Verse of the Day</div>
+                <div class="dw-date-badge" id="verse-date"></div>
+                <div class="dw-quote-mark">"</div>
+                <p class="dw-verse-text" id="verse-text"></p>
+                <p class="dw-verse-ref" id="verse-ref"></p>
+                <p class="dw-body" id="verse-reflection"></p>
+            </div>
+
+            <!-- Motivation Panel -->
+            <div class="dw-panel" id="panel-quote">
+                <button class="dw-close" onclick="closeWidget()"><i class="fas fa-times"></i></button>
+                <div class="dw-badge"><i class="fas fa-fire mr-1"></i> Daily Motivation</div>
+                <div class="dw-date-badge" id="quote-date"></div>
+                <div class="dw-quote-mark">"</div>
+                <p class="dw-verse-text" id="quote-text"></p>
+                <p class="dw-verse-ref" id="quote-author"></p>
+                <p class="dw-body" id="quote-reflection"></p>
+            </div>
+
+        </div><!-- /dw-content -->
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--         CHURCH INFO BOTTOM SECTION          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="church-info-section" class="church-info-section">
+
+        <!-- Top Row: 3 pillars + highlight box -->
+        <div class="ci-top-grid">
+
+            <!-- Pillar 1: Worship -->
+            <div class="ci-pillar">
+                <div class="ci-icon-wrap">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="ci-icon-svg">
+                        <path d="M32 8 L32 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M32 2 C32 2 26 8 26 14 C26 17.3 28.7 20 32 20 C35.3 20 38 17.3 38 14 C38 8 32 2 32 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="20" y="20" width="24" height="28" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M26 48 L22 56 M38 48 L42 56" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20 32 L10 26 L10 56 L20 56" stroke="currentColor" stroke-width="2"/>
+                        <path d="M44 32 L54 26 L54 56 L44 56" stroke="currentColor" stroke-width="2"/>
+                        <line x1="29" y1="20" x2="29" y2="48" stroke="currentColor" stroke-width="1.5"/>
+                        <line x1="35" y1="20" x2="35" y2="48" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3 class="ci-pillar-title">WORSHIP</h3>
+                <p class="ci-pillar-sub">What to Expect</p>
+                <div class="ci-divider"></div>
+                <p class="ci-pillar-text">Join us every Sunday as we gather to praise and glorify God through heartfelt worship, powerful prayer, and the teaching of His Word.</p>
+            </div>
+
+            <!-- Pillar 2: Connect -->
+            <div class="ci-pillar">
+                <div class="ci-icon-wrap">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="ci-icon-svg">
+                        <circle cx="32" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M16 48 C16 38 48 38 48 48" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="14" cy="24" r="6" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 46 C4 38 24 38 24 44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="50" cy="24" r="6" stroke="currentColor" stroke-width="2"/>
+                        <path d="M40 44 C40 38 60 38 60 46" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="ci-pillar-title">CONNECT</h3>
+                <p class="ci-pillar-sub">Contact Members</p>
+                <div class="ci-divider"></div>
+                <p class="ci-pillar-text">Build meaningful relationships within our church family. Connect with fellow members, join a small group, and grow together in faith and community.</p>
+            </div>
+
+            <!-- Pillar 3: God's Love -->
+            <div class="ci-pillar">
+                <div class="ci-icon-wrap">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="ci-icon-svg">
+                        <path d="M32 54 C32 54 10 40 10 24 C10 16.3 16.3 10 24 10 C28.1 10 31.8 11.9 34 15 C36.2 11.9 39.9 10 44 10 C51.7 10 58 16.3 58 24 C58 40 36 54 32 54Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M6 28 L32 54" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.4"/>
+                        <circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <h3 class="ci-pillar-title">GOD'S LOVE</h3>
+                <p class="ci-pillar-sub">Beliefs and History</p>
+                <div class="ci-divider"></div>
+                <p class="ci-pillar-text">We are rooted in the unconditional love of God. Discover our beliefs, our story, and how the love of Christ drives everything we do as a church family.</p>
+            </div>
+
+            <!-- Highlight box -->
+            <div class="ci-highlight-box">
+                <div class="ci-highlight-quote">
+                    <i class="fas fa-quote-left ci-quote-icon"></i>
+                    <p>"A Christian should live for the Glory of God and the Well-Being of Others."</p>
+                </div>
+                <div class="ci-highlight-verse">
+                    <span class="ci-verse-ref">— Matthew 22:37–39</span>
+                </div>
+                <div class="ci-highlight-cta">
+                    <a href="signup.html" class="ci-btn-white">
+                        <i class="fas fa-user-plus mr-2"></i>Join Our Family
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Church image + mission text -->
+        <div class="ci-bottom-grid">
+
+            <!-- Auto-scrolling Slideshow -->
+            <div class="ci-slideshow-wrap">
+                <div class="ci-slides-track" id="slidesTrack">
+
+                    <!-- Slide 1: Worship -->
+                    <div class="ci-slide" style="background: linear-gradient(145deg, #0a0e2a 0%, #1a2a8a 60%, #0d1650 100%);">
+                        <div class="ci-slide-content">
+                            <div class="ci-slide-cross">
+                                <div class="ci-cross-v"></div>
+                                <div class="ci-cross-h"></div>
+                            </div>
+                            <i class="fas fa-church ci-slide-icon"></i>
+                            <h3 class="ci-slide-title">Sunday Worship</h3>
+                            <p class="ci-slide-sub">Jesus Is Lord Church — Calamba City</p>
+                        </div>
+                        <div class="ci-slide-rays"></div>
+                    </div>
+
+                    <!-- Slide 2: Prayer -->
+                    <div class="ci-slide" style="background: linear-gradient(145deg, #0e1a3a 0%, #1e3a7a 55%, #0a1230 100%);">
+                        <div class="ci-slide-content">
+                            <div class="ci-slide-cross">
+                                <div class="ci-cross-v"></div>
+                                <div class="ci-cross-h"></div>
+                            </div>
+                            <i class="fas fa-pray ci-slide-icon"></i>
+                            <h3 class="ci-slide-title">A House of Prayer</h3>
+                            <p class="ci-slide-sub">"Ask and it will be given to you" — Matthew 7:7</p>
+                        </div>
+                        <div class="ci-slide-rays"></div>
+                    </div>
+
+                    <!-- Slide 3: Community -->
+                    <div class="ci-slide" style="background: linear-gradient(145deg, #06101e 0%, #0f2060 55%, #1a3080 100%);">
+                        <div class="ci-slide-content">
+                            <div class="ci-slide-cross">
+                                <div class="ci-cross-v"></div>
+                                <div class="ci-cross-h"></div>
+                            </div>
+                            <i class="fas fa-users ci-slide-icon"></i>
+                            <h3 class="ci-slide-title">Our Community</h3>
+                            <p class="ci-slide-sub">Growing Together in Faith & Fellowship</p>
+                        </div>
+                        <div class="ci-slide-rays"></div>
+                    </div>
+
+                    <!-- Slide 4: Word -->
+                    <div class="ci-slide" style="background: linear-gradient(145deg, #0a0e2a 0%, #162278 55%, #0a0e2a 100%);">
+                        <div class="ci-slide-content">
+                            <div class="ci-slide-cross">
+                                <div class="ci-cross-v"></div>
+                                <div class="ci-cross-h"></div>
+                            </div>
+                            <i class="fas fa-bible ci-slide-icon"></i>
+                            <h3 class="ci-slide-title">The Word of God</h3>
+                            <p class="ci-slide-sub">"Your word is a lamp to my feet" — Psalm 119:105</p>
+                        </div>
+                        <div class="ci-slide-rays"></div>
+                    </div>
+
+                    <!-- Slide 5: Praise -->
+                    <div class="ci-slide" style="background: linear-gradient(145deg, #080c20 0%, #1a2a8a 50%, #2244cc 100%);">
+                        <div class="ci-slide-content">
+                            <div class="ci-slide-cross">
+                                <div class="ci-cross-v"></div>
+                                <div class="ci-cross-h"></div>
+                            </div>
+                            <i class="fas fa-music ci-slide-icon"></i>
+                            <h3 class="ci-slide-title">Praise & Worship</h3>
+                            <p class="ci-slide-sub">"Sing to the Lord a new song" — Psalm 96:1</p>
+                        </div>
+                        <div class="ci-slide-rays"></div>
+                    </div>
+
+                </div>
+
+                <!-- Dot indicators -->
+                <div class="ci-slide-dots" id="slideDots">
+                    <span class="ci-dot active" onclick="goToSlide(0)"></span>
+                    <span class="ci-dot" onclick="goToSlide(1)"></span>
+                    <span class="ci-dot" onclick="goToSlide(2)"></span>
+                    <span class="ci-dot" onclick="goToSlide(3)"></span>
+                    <span class="ci-dot" onclick="goToSlide(4)"></span>
+                </div>
+
+                <!-- Prev / Next arrows -->
+                <button class="ci-arrow ci-arrow-prev" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="ci-arrow ci-arrow-next" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Mission text -->
+            <div class="ci-mission">
+                <p class="ci-mission-label">
+                    <span class="ci-cross">✛</span> WELCOME TO JIL CHURCH
+                </p>
+                <h2 class="ci-mission-title">Connect, Grow &amp;<br>Serve With Us</h2>
+                <p class="ci-mission-text">Jesus Is Lord Church Calamba City is a vibrant community of believers committed to worshiping God in spirit and truth. We welcome everyone to experience His grace, love, and transforming power.</p>
+                <p class="ci-mission-text">Whether you are new to faith or a seasoned believer, there is a place for you here. Come as you are — you are always welcome in God's house.</p>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer strip -->
+    <div class="footer-strip">
+        Jesus Is Lord Church <span class="dot">•</span> Calamba City <span class="dot">•</span> MIS Portal
+    </div>
+
+
+    <!-- ═══════════════════════════════════════ -->
+    <!--         FORGOT PASSWORD MODAL           -->
+    <!-- ═══════════════════════════════════════ -->
+    <div id="forgot-password-modal" class="hidden modal-backdrop">
+        <div class="modal-box" style="animation: slideInFromBottom 0.3s ease-out;">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <i class="fas fa-lock text-white text-4xl mb-2"></i>
+                <h2 class="text-2xl font-bold text-white">Forgot Password</h2>
+                <p class="text-blue-100 text-sm mt-1">Search your account to reset password</p>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div id="forgot-error"   class="hidden modal-error"></div>
+                <div id="forgot-success" class="hidden modal-success"></div>
+
+                <!-- Search Account Section -->
+                <div id="search-account-section">
+                    <p class="text-gray-600 mb-4 text-sm">Please enter either your email address or account number to find your account.</p>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="modal-label"><i class="fas fa-envelope mr-1 text-blue-600"></i>Email Address</label>
+                            <input type="email" id="forgot-email" placeholder="Enter your email" class="modal-input">
+                        </div>
+
+                        <div class="text-center text-gray-400 text-sm font-semibold tracking-widest">OR</div>
+
+                        <div>
+                            <label class="modal-label"><i class="fas fa-id-card mr-1 text-blue-600"></i>Account Number</label>
+                            <input type="text" id="forgot-unique-id" placeholder="Enter your account number" class="modal-input">
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button onclick="closeForgotPassword()" class="btn-modal-cancel">
+                            <i class="fas fa-times mr-2"></i>Cancel
+                        </button>
+                        <button onclick="searchAccount()" class="btn-modal-primary">
+                            <i class="fas fa-search mr-2"></i>Search Account
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reset Password Section -->
+                <div id="reset-password-section" class="hidden">
+                    <div class="account-found-box">
+                        <i class="fas fa-check-circle text-green-600 text-xl mr-3"></i>
+                        <div>
+                            <p class="text-green-800 font-semibold text-sm">Account Found!</p>
+                            <p class="text-green-700 text-xs" id="account-info"></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="modal-label"><i class="fas fa-lock mr-1 text-blue-600"></i>New Password</label>
+                            <input type="password" id="new-password" placeholder="Enter new password" class="modal-input">
+                        </div>
+                        <div>
+                            <label class="modal-label"><i class="fas fa-lock mr-1 text-blue-600"></i>Confirm Password</label>
+                            <input type="password" id="confirm-password" placeholder="Confirm new password" class="modal-input">
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button onclick="backToSearch()" class="btn-modal-cancel">
+                            <i class="fas fa-arrow-left mr-2"></i>Back
+                        </button>
+                        <button onclick="resetPassword()" class="btn-modal-green">
+                            <i class="fas fa-key mr-2"></i>Reset Password
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /modal-body -->
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+        // ── Slideshow ──
+        let currentSlide = 0;
+        let slideTimer = null;
+        const totalSlides = 5;
+
+        function updateSlider() {
+            document.getElementById('slidesTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.ci-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlider();
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, 3500);
+        }
+
+        // Auto-scroll every 3.5 seconds
+        slideTimer = setInterval(nextSlide, 3500);
+
+        // Pause on hover
+        const track = document.getElementById('slidesTrack');
+        if (track) {
+            track.parentElement.addEventListener('mouseenter', () => clearInterval(slideTimer));
+            track.parentElement.addEventListener('mouseleave', resetTimer);
+        }
+    </script>
+
+    <script>
+        // ── Daily Widget ──
+        const SERMONS = [
+            { title: "Walking in the Light", passage: "John 8:12", body: "Jesus calls us to follow Him as the Light of the world — stepping out of darkness and into His glorious purpose for our lives.", speaker: "Ptr. Rolly Dimaculangan" },
+            { title: "Faith Over Fear", passage: "Matthew 14:27–29", body: "Peter's walk on water teaches us that when we fix our eyes on Jesus rather than our circumstances, nothing is impossible.", speaker: "Ptr. Edwin Santos" },
+            { title: "The Power of Prayer", passage: "Philippians 4:6–7", body: "Through prayer and thanksgiving, God's peace — which surpasses all understanding — guards our hearts and minds in Christ Jesus.", speaker: "Ptr. Marilyn Cruz" },
+            { title: "Grace Upon Grace", passage: "John 1:16–17", body: "From His fullness we have all received grace upon grace. The law came through Moses, but grace and truth came through Jesus Christ.", speaker: "Ptr. Rolly Dimaculangan" },
+            { title: "Renewed Every Morning", passage: "Lamentations 3:22–23", body: "The steadfast love of the Lord never ceases; His mercies never come to an end. They are new every morning — great is His faithfulness.", speaker: "Ptr. Edwin Santos" },
+            { title: "Rooted and Built Up", passage: "Colossians 2:6–7", body: "As you received Christ Jesus as Lord, continue to live your lives in Him — rooted and built up in Him, strengthened in the faith.", speaker: "Ptr. Marilyn Cruz" },
+            { title: "The Good Shepherd", passage: "Psalm 23:1–3", body: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, He leads me beside quiet waters, He refreshes my soul.", speaker: "Ptr. Rolly Dimaculangan" },
+            { title: "More Than Conquerors", passage: "Romans 8:37", body: "No, in all these things we are more than conquerors through Him who loved us. Our victory is already secured in Christ.", speaker: "Ptr. Edwin Santos" },
+            { title: "Ask, Seek, Knock", passage: "Matthew 7:7–8", body: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. God is always ready to respond.", speaker: "Ptr. Marilyn Cruz" },
+            { title: "The Vine and the Branches", passage: "John 15:5", body: "I am the vine; you are the branches. If you remain in Me and I in you, you will bear much fruit; apart from Me you can do nothing.", speaker: "Ptr. Rolly Dimaculangan" },
+            { title: "A New Creation", passage: "2 Corinthians 5:17", body: "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here! God makes all things new.", speaker: "Ptr. Edwin Santos" },
+            { title: "Blessed Are the Pure in Heart", passage: "Matthew 5:8", body: "Blessed are the pure in heart, for they will see God. Purity of heart is not about perfection — it is about undivided devotion to God.", speaker: "Ptr. Marilyn Cruz" },
+        ];
+        const VERSES = [
+            { text: "For God so loved the world that He gave His one and only Son, that whoever believes in Him shall not perish but have eternal life.", ref: "John 3:16", reflection: "The greatest love ever shown — God gave His very best so we could have eternal life in Him." },
+            { text: "I can do all this through Him who gives me strength.", ref: "Philippians 4:13", reflection: "Our strength does not come from ourselves but from Christ who empowers us for every task." },
+            { text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to Him, and He will make your paths straight.", ref: "Proverbs 3:5–6", reflection: "Surrender your plans to God. His understanding far surpasses ours, and His paths are always perfect." },
+            { text: "The Lord is my strength and my song; He has become my salvation.", ref: "Exodus 15:2", reflection: "When we make God our song, praise becomes our natural response even in the hardest seasons." },
+            { text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.", ref: "Joshua 1:9", reflection: "God's presence is the source of all our courage. Wherever He sends us, He goes before us." },
+            { text: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "Matthew 11:28", reflection: "Jesus personally invites the exhausted to find rest not in striving, but in His presence." },
+            { text: "For I know the plans I have for you, declares the Lord — plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11", reflection: "No matter how uncertain life feels, God holds your future with plans full of hope." },
+            { text: "Delight yourself in the Lord, and He will give you the desires of your heart.", ref: "Psalm 37:4", reflection: "When our greatest delight is God Himself, our desires become aligned with His perfect will." },
+            { text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.", ref: "Philippians 4:6", reflection: "Anxiety loses its grip when we trade worry for prayer and thanksgiving before our Father." },
+            { text: "The Lord bless you and keep you; the Lord make His face shine on you and be gracious to you.", ref: "Numbers 6:24–25", reflection: "This ancient blessing still speaks today: God's face shines on His beloved children." },
+            { text: "And we know that in all things God works for the good of those who love Him, who have been called according to His purpose.", ref: "Romans 8:28", reflection: "Even in pain and confusion, God is weaving all things into His perfect plan for those He loves." },
+            { text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.", ref: "Psalm 34:18", reflection: "God does not stand far from our pain — He draws nearest to us in our lowest moments." },
+        ];
+        const QUOTES = [
+            { text: "Prayer is not asking. It is a longing of the soul. It is a daily admission of one's weakness.", author: "Mahatma Gandhi", reflection: "True prayer begins with humility — acknowledging that we need God more than anything else." },
+            { text: "Faith is taking the first step even when you don't see the whole staircase.", author: "Martin Luther King Jr.", reflection: "God rarely shows us the full path. He asks us to trust Him one step at a time." },
+            { text: "God never said that the journey would be easy, but He did say that the arrival would be worthwhile.", author: "Max Lucado", reflection: "The struggles of today are preparing you for a destination far greater than you can imagine." },
+            { text: "You don't have to be great to start, but you have to start to be great.", author: "Zig Ziglar", reflection: "Stop waiting for the perfect moment. God works through willing, imperfect beginners." },
+            { text: "The will of God will never take you to where the grace of God will not protect you.", author: "Unknown", reflection: "Wherever God guides, He provides. His grace is always sufficient for the calling on your life." },
+            { text: "Character cannot be developed in ease and quiet. Only through experience of trial and suffering can the soul be strengthened.", author: "Helen Keller", reflection: "Your hardships are not punishments — they are the very tools God uses to shape your character." },
+            { text: "We are not human beings having a spiritual experience. We are spiritual beings having a human experience.", author: "Pierre Teilhard de Chardin", reflection: "You were made for eternity. Let that truth reframe every struggle and every joy in your life." },
+            { text: "The greatest use of a life is to spend it on something that will outlast it.", author: "William James", reflection: "Invest your days in people, in faith, and in love — things that echo into eternity." },
+            { text: "In the middle of difficulty lies opportunity.", author: "Albert Einstein", reflection: "Every challenge holds a hidden door. Ask God to open your eyes to see it." },
+            { text: "Be the change you wish to see in the world.", author: "Mahatma Gandhi", reflection: "Don't wait for others to transform the world. God has placed that power within you, starting today." },
+            { text: "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.", author: "Martin Luther King Jr.", reflection: "You are called to be light and love in a world that desperately needs both." },
+            { text: "The secret of getting ahead is getting started.", author: "Mark Twain", reflection: "Whatever God has placed in your heart — begin today. Progress starts with a single faithful step." },
+        ];
+
+        function getDayIndex(arr) {
+            const start = new Date(new Date().getFullYear(), 0, 0);
+            const dayOfYear = Math.floor((new Date() - start) / 86400000);
+            return dayOfYear % arr.length;
+        }
+
+        function formatDate() {
+            return new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        function loadDailyWidget() {
+            const s = SERMONS[getDayIndex(SERMONS)];
+            const v = VERSES[getDayIndex(VERSES)];
+            const q = QUOTES[getDayIndex(QUOTES)];
+            const d = formatDate();
+
+            document.getElementById('sermon-date').textContent = d;
+            document.getElementById('sermon-title').textContent = s.title;
+            document.getElementById('sermon-passage').textContent = s.passage;
+            document.getElementById('sermon-body').textContent = s.body;
+            document.getElementById('sermon-speaker').textContent = s.speaker;
+
+            document.getElementById('verse-date').textContent = d;
+            document.getElementById('verse-text').textContent = v.text;
+            document.getElementById('verse-ref').textContent = '— ' + v.ref;
+            document.getElementById('verse-reflection').textContent = v.reflection;
+
+            document.getElementById('quote-date').textContent = d;
+            document.getElementById('quote-text').textContent = q.text;
+            document.getElementById('quote-author').textContent = '— ' + q.author;
+            document.getElementById('quote-reflection').textContent = q.reflection;
+        }
+
+        function switchTab(panelId, btnEl) {
+            const content = document.getElementById('dwContent');
+            const allTabs = document.querySelectorAll('.dw-tab');
+            const allPanels = document.querySelectorAll('.dw-panel');
+
+            // If clicking the already-active tab, close it
+            const isAlreadyActive = btnEl && btnEl.classList.contains('active');
+            if (isAlreadyActive) {
+                closeWidget();
+                return;
+            }
+
+            // Show content area
+            content.classList.add('open');
+
+            // Update panels
+            allPanels.forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + panelId).classList.add('active');
+
+            // Update tabs
+            allTabs.forEach(t => t.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+        }
+
+        function closeWidget() {
+            document.getElementById('dwContent').classList.remove('open');
+            document.querySelectorAll('.dw-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.dw-panel').forEach(p => p.classList.remove('active'));
+        }
+
+        loadDailyWidget();
+    </script>
+</body>
+</html>
