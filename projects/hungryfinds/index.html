@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HungryFinds — Find Food Stalls Near You in Calamba City</title>
+<meta name="description" content="Discover real food stalls, carinderias, and eateries across Calamba City on a live map, then get directions in Google Maps — free, no sign-up.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="lights" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="flame">🔥</span>HungryFinds</div>
+    <ul class="nav-links">
+      <li><a href="#map-section">Live Map</a></li>
+      <li><a href="#picks">Editor's Picks</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#how">How It Works</a></li>
+    </ul>
+    <a href="https://www.google.com/maps/search/?api=1&query=food+stalls+Calamba+City" target="_blank" rel="noopener" class="signup-btn">Open Google Maps →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">📍 Calamba City, Laguna</span>
+    <h1 class="headline">Find your next<br><span class="accent">favorite stall.</span></h1>
+    <p class="hero-sub">A live map of real food stalls, carinderias, cafés, and eateries across Calamba City — pulled from free open map data. Tap a pin, then jump straight into Google Maps for directions.</p>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search a name or dish, e.g. isaw, buko pie, ramen...">
+      <select id="categorySelect">
+        <option value="all">All Categories</option>
+        <option value="restaurant">Restaurants</option>
+        <option value="fastfood">Fast Food &amp; Carinderia</option>
+        <option value="cafe">Cafés</option>
+        <option value="bakery">Bakeries</option>
+        <option value="market">Markets &amp; Food Courts</option>
+      </select>
+      <button id="searchBtn">Find It 🔍</button>
+    </div>
+
+    <div class="chip-row" id="chipRow">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="restaurant">🍽️ Restaurants</button>
+      <button class="chip" data-cat="fastfood">🔥 Fast Food</button>
+      <button class="chip" data-cat="cafe">☕ Cafés</button>
+      <button class="chip" data-cat="bakery">🥐 Bakeries</button>
+      <button class="chip" data-cat="market">🧺 Markets</button>
+    </div>
+  </div>
+</section>
+
+<section id="map-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">🗺️ Live &amp; Free</div>
+        <h2 class="section-title">Calamba City Map</h2>
+      </div>
+      <p class="section-note">Powered by OpenStreetMap data (free, no API key). Tap any pin to open it in Google Maps or get directions.</p>
+    </div>
+    <div class="map-toolbar">
+      <button class="locate-btn" id="locateBtn">📍 Use my location</button>
+      <span class="map-status" id="mapStatus">Loading nearby food stalls…</span>
+    </div>
+    <div id="map"></div>
+    <p class="map-attrib-note">Place data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>, served via the free Overpass API.</p>
+  </div>
+</section>
+
+<section id="discover">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">🔥 Right Now</div>
+        <h2 class="section-title">Nearby Finds</h2>
+      </div>
+      <p class="section-note">This list stays in sync with the map above — search or filter to narrow it down.</p>
+    </div>
+    <div class="loading-state" id="loadingState">Fetching real food stalls in Calamba City…</div>
+    <div class="error-state" id="errorState">Couldn't reach the free map data source right now. You can still <a href="https://www.google.com/maps/search/?api=1&query=food+stalls+Calamba+City" target="_blank" rel="noopener">search food stalls in Calamba City on Google Maps</a> directly, or try reloading this page.</div>
+    <div class="slideshow-wrap" id="slideshowWrap">
+      <div class="slideshow">
+        <button class="slide-arrow prev" id="prevSlide" aria-label="Previous">‹</button>
+        <div class="slide-viewport" id="slideViewport"></div>
+        <button class="slide-arrow next" id="nextSlide" aria-label="Next">›</button>
+        <div class="swipe-hint" id="swipeHint">Swipe or tap for more →</div>
+      </div>
+      <div class="story-bars" id="storyBars"></div>
+      <div class="slide-dots" id="slideDots"></div>
+    </div>
+    <div class="no-results" id="noResults">No finds match that search. Try a different dish or category.</div>
+  </div>
+</section>
+
+<section id="picks">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Hand-picked</div>
+        <h2 class="section-title">Editor's Picks</h2>
+      </div>
+      <p class="section-note">Calamba City institutions worth the detour, every single time.</p>
+    </div>
+    <div class="pick-grid" id="pickGrid"></div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Browse By</div>
+        <h2 class="section-title">Food Categories</h2>
+      </div>
+      <p class="section-note">Tap a category to filter the live map above.</p>
+    </div>
+    <div class="cat-grid">
+      <button class="cat-tile" data-cat="restaurant" style="background:linear-gradient(135deg,#FF7A1A,#FF3D81)"><span class="emoji">🍽️</span><div><h4>Restaurants</h4><p>Sit-down local &amp; global eats</p></div></button>
+      <button class="cat-tile" data-cat="fastfood" style="background:linear-gradient(135deg,#FFC93C,#FF7A1A)"><span class="emoji">🔥</span><div><h4>Fast Food &amp; Carinderia</h4><p>Quick, affordable, everyday</p></div></button>
+      <button class="cat-tile" data-cat="cafe" style="background:linear-gradient(135deg,#3D6BFF,#37C6B0)"><span class="emoji">☕</span><div><h4>Cafés</h4><p>Coffee, pastries, study spots</p></div></button>
+      <button class="cat-tile" data-cat="bakery" style="background:linear-gradient(135deg,#37C6B0,#2FA88E)"><span class="emoji">🥐</span><div><h4>Bakeries</h4><p>Buko pie &amp; fresh-baked finds</p></div></button>
+      <button class="cat-tile" data-cat="market" style="background:linear-gradient(135deg,#C64FF2,#3D6BFF)"><span class="emoji">🧺</span><div><h4>Markets &amp; Food Courts</h4><p>Public markets, food halls</p></div></button>
+      <button class="cat-tile" data-cat="all" style="background:linear-gradient(135deg,#FF3D81,#FF7A1A)"><span class="emoji">🗺️</span><div><h4>Everything</h4><p>See the whole live map</p></div></button>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Simple</div>
+        <h2 class="section-title">How It Works</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h4>Browse or share location</h4><p>See stalls plotted across Calamba City, or tap "Use my location" to sort by distance.</p></div>
+      <div class="step"><div class="num">02</div><h4>Tap a pin or card</h4><p>Check the category and name of each spot straight from open map data.</p></div>
+      <div class="step"><div class="num">03</div><h4>Go find it</h4><p>Hit "Directions" to jump into Google Maps and get walking or driving directions — free, every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Hungry yet?</h2>
+    <p>The whole map is free and open — no account, no API key, just Calamba City food.</p>
+    <a href="#map-section" class="signup-btn" style="display:inline-block; padding:14px 32px; font-size:15px;">Start Exploring →</a>
+  </div>
+</section>
+
+<footer>© 2026 HungryFinds — Made for Calamba City food lovers. Map data © OpenStreetMap contributors.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
