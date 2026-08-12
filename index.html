@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Rick Badillo — Front-End Developer & IT Technician</title>
+<meta name="description" content="Portfolio of John Rick Badillo, a front-end developer and IT technician from Calamba City, Laguna. Front-end web development, UI/UX design, and hardware/IT support.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="John Rick Badillo — Front-End Developer & IT Technician">
+<meta property="og:description" content="Front-end developer and IT technician from Calamba City, Laguna. Browse projects, skills, and experience.">
+<meta property="og:image" content="og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D1416'/%3E%3Ctext x='50' y='68' font-size='54' font-family='monospace' font-weight='700' fill='%234FD1C5' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D1416'/%3E%3Ctext x='50' y='68' font-size='54' font-family='monospace' font-weight='700' fill='%234FD1C5' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0D1416">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Rick G. Badillo",
+  "jobTitle": "Front-End Developer & IT Technician",
+  "url": "https://jhrck-04.github.io/",
+  "email": "mailto:johnrick041103@gmail.com",
+  "telephone": "+639128346428",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Calamba City",
+    "addressRegion": "Laguna",
+    "addressCountry": "PH"
+  },
+  "sameAs": ["https://github.com/jhrck-04"]
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css');
+
+:root{
+  --bg: #0D1416;
+  --bg-raised: #141D20;
+  --bg-card: #182226;
+  --line: #253238;
+  --text: #E7EEEC;
+  --text-dim: #8FA3A0;
+  --text-faint: #7B9296;
+  --trace: #4FD1C5;
+  --led: #F2A93B;
+  --led-red: #E8674E;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+
+/* background circuit texture */
+.circuit-bg{
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.35;
+}
+
+::selection{ background:var(--trace); color:#062223; }
+
+.skip-link{
+  position:absolute; left:-9999px; top:0; z-index:999;
+  background:var(--trace); color:#062223; font-family:var(--font-mono);
+  font-weight:700; padding:12px 18px; border-radius:0 0 8px 0;
+}
+.skip-link:focus{ left:0; }
+
+.visually-hidden{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* ---------- layout helpers ---------- */
+.wrap{ max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1; }
+section{ position:relative; padding:110px 0; scroll-margin-top:74px; }
+.eyebrow{
+  font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--trace); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.eyebrow::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--trace); box-shadow:0 0 8px var(--trace); }
+h2.section-title{
+  font-family:var(--font-display); font-weight:600; font-size:clamp(28px,4vw,40px);
+  letter-spacing:-0.01em; margin-bottom:44px;
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(13,20,22,0.82); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{ max-width:1080px; margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between; }
+.logo{ font-family:var(--font-mono); font-weight:700; font-size:15px; letter-spacing:.05em; }
+.logo span{ color:var(--trace); }
+.nav-links{ display:flex; gap:32px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; }
+.nav-links a{ color:var(--text-dim); transition:color .2s; position:relative; }
+.nav-links a:hover, .nav-links a:focus-visible{ color:var(--text); }
+.status-pill{
+  display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11.5px;
+  color:var(--trace); border:1px solid var(--line); padding:6px 12px; border-radius:20px; white-space:nowrap;
+}
+.status-pill .dot{ width:7px; height:7px; border-radius:50%; background:var(--trace); animation:blink 2s ease-in-out infinite; }
+@keyframes blink{ 0%,100%{ opacity:1; box-shadow:0 0 6px var(--trace);} 50%{ opacity:.35; box-shadow:none;} }
+.menu-btn{ display:none; background:none; border:1px solid var(--line); color:var(--text); font-family:var(--font-mono); padding:8px 10px; border-radius:6px; cursor:pointer; align-items:center; justify-content:center; }
+.menu-btn:hover, .menu-btn:focus-visible{ border-color:var(--trace); color:var(--trace); }
+
+/* ---------- hero ---------- */
+.hero{ min-height:100vh; display:flex; align-items:center; padding-top:90px; }
+.hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; }
+.hero-role{
+  font-family:var(--font-mono); font-size:15px; color:var(--led); min-height:22px; margin-bottom:20px;
+}
+.hero-role .cursor{ display:inline-block; width:8px; background:var(--led); margin-left:2px; animation:blink 1s steps(1) infinite; }
+h1.name{
+  font-family:var(--font-display); font-weight:700; font-size:clamp(38px,6vw,64px); line-height:1.05;
+  letter-spacing:-0.02em; margin-bottom:22px;
+}
+.hero p.lede{ color:var(--text-dim); font-size:17px; max-width:480px; margin-bottom:34px; }
+.cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+.btn{
+  font-family:var(--font-mono); font-size:13px; letter-spacing:.04em; padding:13px 24px; border-radius:6px;
+  display:inline-flex; align-items:center; gap:8px; transition:all .2s; cursor:pointer; border:1px solid transparent;
+}
+.btn-primary{ background:var(--trace); color:#062223; font-weight:700; }
+.btn-primary:hover{ background:#6BE0D4; transform:translateY(-1px); }
+.btn-ghost{ border-color:var(--line); color:var(--text); }
+.btn-ghost:hover{ border-color:var(--trace); color:var(--trace); }
+
+/* spec panel */
+.spec-panel{
+  background:var(--bg-card); border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+}
+.spec-panel-head{
+  padding:14px 18px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;
+  font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:.08em; text-transform:uppercase;
+}
+.spec-panel-head .leds{ display:flex; gap:6px; }
+.spec-panel-head .leds span{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+.spec-panel-head .leds span:nth-child(1){ background:var(--led-red); }
+.spec-panel-head .leds span:nth-child(2){ background:var(--led); }
+.spec-panel-head .leds span:nth-child(3){ background:var(--trace); }
+.spec-row{
+  display:flex; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--line);
+  font-family:var(--font-mono); font-size:13px;
+}
+.spec-row:last-child{ border-bottom:none; }
+.spec-row .k{ color:var(--text-faint); }
+.spec-row .v{ color:var(--text); text-align:right; }
+
+/* ---------- about ---------- */
+.about-grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; }
+.about-grid p{ color:var(--text-dim); font-size:16px; margin-bottom:16px; max-width:540px; }
+.mini-spec{ font-family:var(--font-mono); font-size:13px; }
+.mini-spec div{ display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); }
+.mini-spec .k{ color:var(--text-faint); }
+
+.avatar-frame{
+  position:relative; width:84px; height:84px; border-radius:50%; overflow:hidden;
+  background:var(--bg-raised); border:1px dashed var(--line); margin-bottom:22px;
+}
+.avatar-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+.avatar-placeholder{
+  display:flex; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center;
+  gap:4px; text-align:center; padding:6px; font-family:var(--font-mono); color:var(--text-faint);
+}
+.avatar-placeholder svg{ opacity:.6; width:18px; height:18px; }
+.avatar-placeholder span{ font-size:8px; line-height:1.35; display:none; }
+
+/* ---------- skills ---------- */
+.skill-groups{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.skill-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:10px; padding:26px; }
+.skill-card h3{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--trace); margin-bottom:18px;
+}
+.chip-row{ display:flex; flex-wrap:wrap; gap:9px; }
+.chip{
+  font-family:var(--font-mono); font-size:12.5px; padding:7px 12px; border:1px solid var(--line); border-radius:6px; color:var(--text-dim);
+  display:flex; align-items:center; gap:7px; transition:border-color .2s, color .2s;
+}
+.chip::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--trace); flex-shrink:0; }
+.chip:hover{ border-color:var(--trace); color:var(--text); }
+
+/* ---------- tech stack ---------- */
+.stack-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:16px; }
+.stack-item{
+  background:var(--bg-card); border:1px solid var(--line); border-radius:10px; padding:22px 14px;
+  display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;
+  transition:border-color .2s, transform .2s, background .2s;
+}
+.stack-item:hover{ border-color:var(--trace); transform:translateY(-3px); background:#1B262A; }
+.stack-item i{ font-size:34px; color:var(--text-dim); transition:color .2s; }
+.stack-item:hover i{ color:var(--trace); }
+.stack-item i.colored{ color:initial; }
+.stack-item span{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); letter-spacing:.02em; }
+.stack-group-label{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text-faint); margin:0 0 16px; padding-top:8px;
+}
+.stack-grid + .stack-group-label{ margin-top:36px; }
+.brand-icon{ width:34px; height:34px; }
+.brand-badge{
+  width:34px; height:34px; border-radius:8px; border:1px solid;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:.02em;
+}
+.stack-note{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-faint); margin-top:26px; text-align:center; }
+
+/* ---------- projects ---------- */
+.project-card{
+  background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:32px;
+  margin-bottom:22px; display:grid; grid-template-columns:auto 1fr; gap:28px;
+  cursor:pointer; transition:border-color .2s, transform .2s, background .2s;
+}
+.project-card:hover, .project-card:focus-visible{
+  border-color:var(--trace); transform:translateY(-2px); background:#1B262A;
+  outline:none;
+}
+.project-card:hover .project-body h3, .project-card:focus-visible .project-body h3{ color:var(--trace); }
+.project-link-hint{
+  font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint);
+  display:inline-flex; align-items:center; gap:6px; margin-top:16px; transition:color .2s, gap .2s;
+}
+.project-card:hover .project-link-hint, .project-card:focus-visible .project-link-hint{ color:var(--trace); gap:10px; }
+.project-tag{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 10px; border-radius:20px; border:1px solid; align-self:start; white-space:nowrap;
+}
+.tag-capstone{ color:var(--trace); border-color:var(--trace); }
+.tag-business{ color:var(--led); border-color:var(--led); }
+.tag-frontend{ color:#9AA9C7; border-color:#9AA9C7; }
+.project-index{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); display:block; margin-bottom:8px; }
+.project-body h3{ font-family:var(--font-display); font-size:23px; font-weight:600; margin-bottom:10px; }
+.project-body p{ color:var(--text-dim); font-size:15px; margin-bottom:16px; max-width:600px; }
+.tech-row{ display:flex; flex-wrap:wrap; gap:8px; }
+.tech-pill{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-faint); border:1px solid var(--line); padding:4px 10px; border-radius:5px; }
+
+/* ---------- experience ---------- */
+.log{ border-left:1px solid var(--line); padding-left:30px; margin-left:6px; }
+.log-entry{ position:relative; padding-bottom:40px; }
+.log-entry:last-child{ padding-bottom:0; }
+.log-entry::before{
+  content:''; position:absolute; left:-35px; top:4px; width:9px; height:9px; border-radius:50%;
+  background:var(--bg); border:2px solid var(--trace);
+}
+.log-date{ font-family:var(--font-mono); font-size:12px; color:var(--led); margin-bottom:6px; }
+.log-entry h3{ font-family:var(--font-display); font-size:19px; font-weight:600; margin-bottom:4px; }
+.log-org{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-faint); margin-bottom:10px; }
+.log-entry p{ color:var(--text-dim); font-size:14.5px; max-width:580px; }
+
+/* ---------- education ---------- */
+.edu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.edu-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:10px; padding:22px; }
+.edu-card .yr{ font-family:var(--font-mono); font-size:11.5px; color:var(--trace); margin-bottom:10px; }
+.edu-card h4{ font-family:var(--font-display); font-size:16px; font-weight:600; margin-bottom:6px; }
+.edu-card p{ color:var(--text-faint); font-size:13px; }
+
+/* ---------- certificates ---------- */
+.cert-carousel{ position:relative; }
+.cert-track{
+  display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  padding-bottom:10px; -ms-overflow-style:none; scrollbar-width:none;
+}
+.cert-track::-webkit-scrollbar{ display:none; }
+.cert-card{
+  background:var(--bg-card); border:1px solid var(--line); border-radius:10px; overflow:hidden;
+  transition:border-color .2s, transform .2s; flex:0 0 260px; scroll-snap-align:start;
+}
+.cert-card:hover{ border-color:var(--trace); transform:translateY(-2px); }
+.cert-media{ position:relative; width:100%; aspect-ratio:4/3; background:var(--bg-raised); border-bottom:1px solid var(--line); }
+.cert-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+.cert-placeholder{
+  display:flex; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; text-align:center; padding:14px; font-family:var(--font-mono); color:var(--text-faint);
+}
+.cert-placeholder svg{ opacity:.6; }
+.cert-placeholder span{ font-size:10.5px; line-height:1.5; }
+.cert-body{ padding:16px 18px; }
+.cert-body h4{ font-family:var(--font-display); font-size:15px; font-weight:600; margin-bottom:3px; }
+.cert-body p{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); }
+
+.cert-nav{
+  display:flex; gap:10px; justify-content:flex-end; margin-top:16px;
+}
+.cert-nav button{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--bg-card);
+  color:var(--text); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s, color .2s;
+}
+.cert-nav button:hover{ border-color:var(--trace); color:var(--trace); }
+
+/* ---------- lightbox ---------- */
+.cert-media{ cursor:default; }
+.cert-media.has-image{ cursor:zoom-in; }
+.lightbox{
+  position:fixed; inset:0; background:rgba(6,10,11,0.9); backdrop-filter:blur(4px);
+  display:none; align-items:center; justify-content:center; z-index:200; padding:40px;
+}
+.lightbox.active{ display:flex; }
+.lightbox img{
+  max-width:min(90vw,900px); max-height:85vh; border-radius:10px; border:1px solid var(--line);
+  box-shadow:0 40px 80px -20px rgba(0,0,0,0.7);
+}
+.lightbox-close{
+  position:absolute; top:24px; right:28px; width:42px; height:42px; border-radius:50%;
+  border:1px solid var(--line); background:var(--bg-card); color:var(--text);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s, color .2s;
+}
+.lightbox-close:hover{ border-color:var(--trace); color:var(--trace); }
+
+/* ---------- contact ---------- */
+.contact{ text-align:center; }
+.contact h2{ font-family:var(--font-display); font-size:clamp(30px,5vw,46px); font-weight:700; margin-bottom:18px; }
+.contact p{ color:var(--text-dim); max-width:460px; margin:0 auto 34px; }
+.contact-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+footer{ border-top:1px solid var(--line); padding:26px 0; text-align:center; font-family:var(--font-mono); font-size:12px; color:var(--text-faint); }
+
+/* ---------- back to top ---------- */
+.back-to-top{
+  position:fixed; right:24px; bottom:24px; z-index:60;
+  width:44px; height:44px; border-radius:50%; border:1px solid var(--line);
+  background:var(--bg-card); color:var(--text-dim); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0; pointer-events:none; transform:translateY(8px);
+  transition:opacity .25s ease, transform .25s ease, border-color .2s, color .2s;
+}
+.back-to-top.visible{ opacity:1; pointer-events:auto; transform:translateY(0); }
+.back-to-top:hover, .back-to-top:focus-visible{ border-color:var(--trace); color:var(--trace); }
+
+/* reveal on scroll */
+.reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* responsive */
+@media (max-width:860px){
+  .hero-grid, .about-grid, .skill-groups{ grid-template-columns:1fr; }
+  .edu-grid{ grid-template-columns:1fr; }
+  .project-card{ grid-template-columns:1fr; }
+  .nav-inner{ flex-wrap:wrap; }
+  .nav-links{
+    display:flex; flex-direction:column; width:100%; gap:0;
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .3s ease, opacity .2s ease;
+    order:5; margin-top:0;
+  }
+  .nav-links.open{ max-height:400px; opacity:1; margin-top:14px; }
+  .nav-links li{ border-top:1px solid var(--line); }
+  .nav-links a{ display:block; padding:14px 4px; }
+  .nav-github{ display:none; }
+  .nav-status span.label{ display:none; }
+  .menu-btn{ display:flex; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<svg class="circuit-bg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#1C2A2C" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+  <path d="M0 140 H220 V300 H480" fill="none" stroke="#1E3A38" stroke-width="1.4"/>
+  <path d="M1200 220 H900 V420 H700 V620" fill="none" stroke="#1E3A38" stroke-width="1.4"/>
+  <path d="M0 700 H300 V560 H560" fill="none" stroke="#1E3A38" stroke-width="1.4"/>
+  <circle cx="220" cy="300" r="4" fill="#274745"/>
+  <circle cx="900" cy="420" r="4" fill="#274745"/>
+  <circle cx="300" cy="560" r="4" fill="#274745"/>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">JR<span>B</span>.dev</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#techstack">Tech Stack</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://github.com/jhrck-04" target="_blank" rel="noopener" class="status-pill nav-github" style="text-decoration:none;">GitHub ↗</a>
+    <div class="status-pill nav-status"><span class="dot"></span><span class="label">Available for work</span></div>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="main">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="avatar-frame">
+        <img src="profile.jpg" alt="John Rick Badillo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-placeholder">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+          <span>Add profile.jpg<br>to site root</span>
+        </div>
+      </div>
+      <div class="hero-role" aria-hidden="true"><span id="roleText">Front-End Developer</span><span class="cursor">&nbsp;</span></div>
+      <span class="visually-hidden">Front-End Developer, IT Technician, UI/UX Designer, Problem Solver</span>
+      <h1 class="name">John Rick<br>Badillo</h1>
+      <p class="lede">IT graduate from Calamba City, Laguna, building clean interfaces and keeping the hardware behind them running. I like problems that live at the intersection of a screen and a soldering iron.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View projects →</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">View CV</a>
+        <a href="https://github.com/jhrck-04" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="spec-panel">
+      <div class="spec-panel-head">
+        <span>unit_spec.log</span>
+        <div class="leds"><span></span><span></span><span></span></div>
+      </div>
+      <div class="spec-row"><span class="k">NAME</span><span class="v">John Rick G. Badillo</span></div>
+      <div class="spec-row"><span class="k">BASE</span><span class="v">Calamba City, Laguna</span></div>
+      <div class="spec-row"><span class="k">ROLE</span><span class="v">Front-End Dev / IT Support</span></div>
+      <div class="spec-row"><span class="k">EDUCATION</span><span class="v">BS Information Technology</span></div>
+      <div class="spec-row"><span class="k">GRAD</span><span class="v">June 2026</span></div>
+      <div class="spec-row"><span class="k">LANGUAGES</span><span class="v">English, Tagalog</span></div>
+      <div class="spec-row"><span class="k">STATUS</span><span class="v" style="color:var(--trace)">● Operational</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2 class="section-title">Comfortable on both sides of the screen</h2>
+      <p>I'm finishing my BS in Information Technology at City College of Calamba, with a background that started in hardware — troubleshooting PCs and installing CCTV systems — before moving into front-end development and UI/UX design.</p>
+      <p>My OJT at Calamba Water District's MISD/IT Department kept me close to real infrastructure, diagnosing hardware and software issues day to day. My capstone project let me take that same problem-solving instinct and apply it to building a full web application from wireframe to working dashboard.</p>
+    </div>
+    <div class="mini-spec">
+      <div><span class="k">Location</span><span>Calamba City, Laguna, PH</span></div>
+      <div><span class="k">Focus</span><span>UI/UX &amp; Front-End Dev</span></div>
+      <div><span class="k">Background</span><span>Hardware &amp; IT Support</span></div>
+      <div><span class="k">Email</span><span>johnrick041103@gmail.com</span></div>
+      <div><span class="k">Phone</span><span>+63 912 834 6428</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Components</div>
+    <h2 class="section-title">Skills &amp; tools</h2>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Front-End / UI-UX</h3>
+        <div class="chip-row">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">UI/UX Design</span>
+          <span class="chip">Responsive Development</span>
+          <span class="chip">Wireframing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Hardware &amp; Systems</h3>
+        <div class="chip-row">
+          <span class="chip">Hardware Servicing</span>
+          <span class="chip">Software Troubleshooting</span>
+          <span class="chip">CCTV Installation &amp; Config</span>
+          <span class="chip">System Maintenance</span>
+          <span class="chip">Microsoft Office Suite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="techstack" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Stack</div>
+    <h2 class="section-title">Tech stack</h2>
+    <h3 class="stack-group-label">Core Stack</h3>
+    <div class="stack-grid">
+      <div class="stack-item"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+      <div class="stack-item"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+      <div class="stack-item"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+      <div class="stack-item"><i class="devicon-figma-plain colored"></i><span>Figma</span></div>
+      <div class="stack-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+      <div class="stack-item"><i class="devicon-github-original colored"></i><span>GitHub</span></div>
+      <div class="stack-item"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
+      <div class="stack-item"><i class="devicon-tailwindcss-plain colored"></i><span>Tailwind CSS</span></div>
+    </div>
+
+    <h3 class="stack-group-label">AI Coding Tools</h3>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <svg class="brand-icon" style="fill:#D97757" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+        <span>Claude Code</span>
+      </div>
+      <div class="stack-item">
+        <svg class="brand-icon" style="fill:#8957E5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"/></svg>
+        <span>GitHub Copilot</span>
+      </div>
+      <div class="stack-item">
+        <div class="brand-badge" style="color:#10A37F; border-color:#10A37F;">GPT</div>
+        <span>ChatGPT</span>
+      </div>
+      <div class="stack-item">
+        <div class="brand-badge" style="color:var(--led); border-color:var(--led);">BB</div>
+        <span>Blackbox AI</span>
+      </div>
+    </div>
+
+    <p class="stack-note">Core web stack for the projects below — plus Microsoft Office, hardware diagnostics, and CCTV/network tooling from my IT support work, and AI coding tools I use day to day.</p>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Build log</div>
+    <h2 class="section-title">Selected projects</h2>
+
+
+    <a class="project-card" href="projects/Tank Log/index.html" aria-label="View Minerva Tires project">
+      <span class="project-tag tag-capstone">Blog</span>
+      <div class="project-body">
+        <span class="project-index">01 / Fish Care</span>
+        <h3>Tank Log</h3>
+        <p>The design leans into a "naturalist's field notebook" feel — deep tank-water teal, a warm driftwood amber accent, a wavy waterline divider, and specimen cards styled like museum catalog tags.</p>
+        <div class="tech-row">
+          <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">UI/UX Wireframing</span><span class="tech-pill">Dashboard Design</span>
+        </div>
+        <span class="project-link-hint">View project →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="projects/minerva-tires/" aria-label="View Minerva Tires project">
+      <span class="project-tag tag-capstone">Capstone</span>
+      <div class="project-body">
+        <span class="project-index">02 / Automotive Web App</span>
+        <h3>Minerva Tires</h3>
+        <p>A full web application built for an automotive shop, covering online booking and scheduling, wheel and rim customization tools, and real-time business analytics dashboards. I led the end-to-end UI/UX wireframing and built the responsive front end for the entire platform.</p>
+        <div class="tech-row">
+          <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">UI/UX Wireframing</span><span class="tech-pill">Dashboard Design</span>
+        </div>
+        <span class="project-link-hint">View project →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="projects/church-management-system/" aria-label="View Church Management System project">
+      <span class="project-tag tag-frontend">Front-End</span>
+      <div class="project-body">
+        <span class="project-index">02 / Records & Membership System</span>
+        <h3>Church Management System</h3>
+        <p>A front-end build for a system designed to help churches organize membership records, schedules, and day-to-day administrative tasks. I handled the interface layer — turning the required workflows into clean, navigable screens.</p>
+        <div class="tech-row">
+          <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span>
+        </div>
+        <span class="project-link-hint">View project →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="projects/hungryfinds/" aria-label="View HungryFinds project">
+      <span class="project-tag tag-business">Web App</span>
+      <div class="project-body">
+        <span class="project-index">03 / AI-Powered Food Discovery</span>
+        <h3>HungryFinds</h3>
+        <p>A food discovery platform that helps people find hidden gems, local eats, and trending dishes near them. Built with search and filtering by cuisine or vibe, community-curated trending finds with ratings and prices, and a browsable set of food categories from street food to fine dining.</p>
+        <div class="tech-row">
+          <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">UI/UX Design</span><span class="tech-pill">AI-Assisted Search</span>
+        </div>
+        <span class="project-link-hint">View project →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="experience" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Service log</div>
+    <h2 class="section-title">Work experience</h2>
+    <div class="log">
+      <div class="log-entry">
+        <div class="log-date">DEC 2025 — MAY 2026</div>
+        <h3>Tech Support — OJT</h3>
+        <div class="log-org">Calamba Water District, Calamba City, Laguna</div>
+        <p>Diagnosed and resolved hardware malfunctions and software errors within the MISD/IT Department, assisted with system maintenance, and kept office computers and equipment running smoothly.</p>
+      </div>
+      <div class="log-entry">
+        <div class="log-date">MAR 2025 — MAY 2026</div>
+        <h3>Front-End Web Developer — Capstone Project</h3>
+        <div class="log-org">City College of Calamba</div>
+        <p>Built a web application for an automotive shop with online booking, scheduling, and customer self-service features, including wheel/rim customization tools and real-time performance dashboards. Led UI/UX wireframing and responsive front-end development.</p>
+      </div>
+      <div class="log-entry">
+        <div class="log-date">MAR 2016 — MAY 2019</div>
+        <h3>IT Technician — Technical Support &amp; Installation</h3>
+        <div class="log-org">KomputerStreet Parts and Services, Calamba City, Laguna</div>
+        <p>Performed hardware and software troubleshooting, servicing, and system optimization for individual and business clients. Configured and deployed CCTV security systems including cabling, hardware installation, and testing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Records</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="yr">Jun 2026</div>
+        <h4>BS Information Technology</h4>
+        <p>City College of Calamba</p>
+      </div>
+      <div class="edu-card">
+        <div class="yr">May 2022</div>
+        <h4>Senior High — Computer Systems Servicing (ICT)</h4>
+        <p>Citi Global College, Calamba Campus</p>
+      </div>
+      <div class="edu-card">
+        <div class="yr">Mar 2020</div>
+        <h4>Junior High School</h4>
+        <p>Lecheria National High School</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates" class="reveal">
+  <div class="wrap">
+    <div class="eyebrow">Credentials</div>
+    <h2 class="section-title">Certificates</h2>
+    <div class="cert-carousel">
+      <div class="cert-track" id="certTrack">
+        <div class="cert-card">
+          <div class="cert-media">
+            <img src="certificates/Data Analytics Fundamentals.png" alt="Certificate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="cert-placeholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+            </div>
+          </div>
+          <div class="cert-body">
+            <h4>Data Analytics Fundamentals</h4>
+            <p>DATASense Analytics  · 2026</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-media">
+            <img src="certificates/certificate-2.jpg" alt="Certificate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="cert-placeholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+              <span>Add certificate-2.jpg to<br>certificates/</span>
+            </div>
+          </div>
+          <div class="cert-body">
+            <h4>Certificate title</h4>
+            <p>Issuing organization · Year</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-media">
+            <img src="certificates/certificate-3.jpg" alt="Certificate" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="cert-placeholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+              <span>Add certificate-3.jpg to<br>certificates/</span>
+            </div>
+          </div>
+          <div class="cert-body">
+            <h4>Certificate title</h4>
+            <p>Issuing organization · Year</p>
+          </div>
+        </div>
+      </div>
+      <div class="cert-nav">
+        <button type="button" id="certPrev" aria-label="Previous certificate">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" id="certNext" aria-label="Next certificate">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact reveal">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2>Let's build something.</h2>
+    <p>Open to front-end development and IT support roles. Send a message and I'll get back to you.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:johnrick041103@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="tel:+639128346428">+63 912 834 6428</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 John Rick G. Badillo — Calamba City, Laguna</footer>
+
+<div class="lightbox" id="certLightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="Enlarged certificate">
+</div>
+
+<button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // cycling role text
+  const roles = ["Front-End Developer", "IT Technician", "UI/UX Designer", "Problem Solver"];
+  const el = document.getElementById('roleText');
+  let ri = 0, ci = 0, deleting = false;
+
+  function tick(){
+    const current = roles[ri];
+    if(!deleting){
+      ci++;
+      el.textContent = current.slice(0, ci);
+      if(ci === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      ci--;
+      el.textContent = current.slice(0, ci);
+      if(ci === 0){ deleting = false; ri = (ri+1) % roles.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 65);
+  }
+  tick();
+
+  // mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  if(menuBtn && navLinks){
+    menuBtn.addEventListener('click', ()=>{
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // back to top
+  const backToTop = document.getElementById('backToTop');
+  if(backToTop){
+    window.addEventListener('scroll', ()=>{
+      backToTop.classList.toggle('visible', window.scrollY > 700);
+    });
+    backToTop.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
+  }
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // certificate carousel
+  const certTrack = document.getElementById('certTrack');
+  const certPrev = document.getElementById('certPrev');
+  const certNext = document.getElementById('certNext');
+  if(certTrack && certPrev && certNext){
+    const scrollByCard = () => {
+      const card = certTrack.querySelector('.cert-card');
+      const gap = 22;
+      return card ? card.getBoundingClientRect().width + gap : 280;
+    };
+    certPrev.addEventListener('click', ()=> certTrack.scrollBy({ left: -scrollByCard(), behavior: 'smooth' }));
+    certNext.addEventListener('click', ()=> certTrack.scrollBy({ left: scrollByCard(), behavior: 'smooth' }));
+  }
+
+  // certificate lightbox
+  const lightbox = document.getElementById('certLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || 'Enlarged certificate';
+    lightbox.classList.add('active');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+  }
+
+  document.querySelectorAll('.cert-media').forEach(media => {
+    const img = media.querySelector('img');
+    if(!img) return;
+    const markClickable = () => {
+      media.classList.add('has-image');
+      media.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+    };
+    if(img.complete && img.naturalWidth > 0){ markClickable(); }
+    else { img.addEventListener('load', markClickable); }
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
